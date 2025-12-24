@@ -1,6 +1,7 @@
 package mobileactivation
 
 import (
+	"fmt"
 	"io"
 	"net/url"
 	"strings"
@@ -159,7 +160,7 @@ func Activate(device ios.DeviceEntry) error {
 
 	activationResponseMap, err := ios.ParsePlist(activationHttpResponse)
 	if err != nil {
-		return err
+		return fmt.Errorf(string(activationHttpResponse))
 	}
 	log.Debugf("activation Response Plist: %v", activationResponseMap)
 	log.Info("storing activation response to device")
